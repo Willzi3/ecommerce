@@ -55,9 +55,21 @@ router.post("/", (req, res) => {
 });
 //put 
 router.put("/:id", (req, res) => {
+   const {
+    email,
+    password,
+    full_name,
+    billing_address,
+    default_shipping_address,
+    country,
+    phone,
+    user_type,
+   } =  req.body
     try {
       con.query(
-        `SELECT * FROM users WHERE user_id='${req.params.id}'`,
+        `UPDATE users
+         SET email = "${email}", password = "${password}", full_name = "${full_name}", billing_address = "${billing_address}", default_shipping_address = "${default_shipping_address}", country = "${country}", phone = "${phone}", user_type = "${user_type}" 
+         WHERE user_id=${req.params.id}`,
         (err, result) => {
           if (err) throw err;
           res.send(result);
@@ -70,6 +82,20 @@ router.put("/:id", (req, res) => {
   });
   //delete
 
+router.delete("/:id", (req, res) => {
+  try {
+    con.query(
+      `DELETE  FROM users WHERE user_id='${req.params.id}'`,
+      (err, result) => {
+        if (err) throw err;
+        res.send(result);
+      }
+    );
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error);
+  }
+});
 module.exports = router;
 
 
