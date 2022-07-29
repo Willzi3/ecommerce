@@ -18,14 +18,13 @@ const categoriesRoute = require("./routes/categoriesRoute")
 const ordersRoute = require("./routes/ordersRoute")
 
 
-app.get("/", (req, res) => {
-    res.json({ msg: "Welcome" });
-});
+
 
 app.use("/users", userRoute);
 app.use("/products", productRoute);
 app.use("/categories", categoriesRoute);
 app.use("/orders", ordersRoute);
+
 
 app.listen(app.get("port"), () => {
     console.log(`Listening for calls on port ${app.get("port")}`);
