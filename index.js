@@ -25,6 +25,13 @@ app.use("/products", productRoute);
 app.use("/categories", categoriesRoute);
 app.use("/orders", ordersRoute);
 
+app.use(express.static("public"));
+
+app.get("/" , function(req , res){
+  res.sendFile(__dirname + "/users" + "index.html");
+})
+
+
 
 app.listen(app.get("port"), () => {
     console.log(`Listening for calls on port ${app.get("port")}`);
