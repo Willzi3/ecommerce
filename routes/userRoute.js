@@ -102,7 +102,7 @@ const bcrypt = require('bcryptjs');
 
 // Register Route
 // The Route where Encryption starts
-router.post("/register", (req, res) => {
+router.post("/register", (req, result) => {
   try {
     let sql = "INSERT INTO users SET ?";
     const {
@@ -115,7 +115,7 @@ router.post("/register", (req, res) => {
       billing_address,
       default_shipping_address,
     } = req.body;
-    res.send("user created");
+    res.send(result);
 
     // The start of hashing / encryption
     const salt = bcrypt.genSaltSync(10);
