@@ -7,76 +7,66 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Users</h1>
     <div id="output">
 
     </div>
+    <!-- <button><a href="users.html">Users</a></button>
+    <button><a href="products.html">Products</a></button> -->
     <script>
+        let login = document.getElementById("output").innerHTML = `
+        <form>
+            <label>Email</label>
+            <input type="text" name="email" placeholder="email" id="email"/>
+            <label>Password</label>
+            <input type="text" name="password" placeholder="password" id="password"/>
+            <button type="button" id="btn">Login</button>
+            <a href="register.html"><p>Register</p></a>
+            <p>Forgot password</p>
+        </form>
+        `
+        //login functionality
+btn.addEventListener("click", myFunction);
+        
 
-        const url = "http://localhost:6969"
+async function  myFunction() {
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
 
-      
-       function api(url){
-        fetch(url + "/" + "users")
-            .then(res => res.json())
-            .then((data) => {
-                    for(i = 0; i < data.length; i++){
-                        console.log(data)
-            document.getElementById("output").innerHTML += `
-             <table>
-                <tr>
-                    <th>EMAIL</th>
-                    <th>PASSWORD</th>
-                    <th>USER_TYPE</th>
-                    <th>PHONE</th>
-                    <th>COUNTRY</th>
-                    <th>BILLING_ADDRESS</th>
-                    <th>DEFAULT_SHIPPING_ADDRESS</th>
-                    </tr>
-                    <tr>
-                        <td>${data[i].email}</td>
-                        <td>${data[i].password}</td>
-                        <td>${data[i].user_type}</td>
-                        <td>${data[i].phone}</td>
-                        <td>${data[i].country}</td>
-                        <td>${data[i].billing_address}</td>
-                        <td>${data[i].default_shipping_address}</td>
-                    </tr>
+    const res = await fetch("http://localhost:6969/users/login",
+{
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: "POST",
+    body: JSON.stringify({email: email,
+         password: password})
+})
 
-                
-            </table>`
-        }
-            });
 
-           
-       }
-       api(url);
-      
+const data = await res.json();
+
+console.log(data);
+
+}
+
 
     </script>
     <style>
-        h1{
-            text-align: center;
+        #output{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            
         }
-        table{
+        form{
             border: 1px solid black;
-            margin-bottom: 10px;
-        }
-        th{
-            border: 1px solid black;
-            background-color: lightgray;
-            width: 200px;
-        }
-        td{
-            max-width: 200px;
-            height: 20px;
-            border: 1px solid black;
-            padding: 10px;
-            margin-inline: 10%;
-            word-wrap: break-word;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            width: 400px;
+            padding: 20px;
+            gap: 10px;
         }
     </style>
 </body>
 </html>
-
