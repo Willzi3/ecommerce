@@ -7,6 +7,10 @@
     <title>Document</title>
 </head>
 <body>
+
+    <div id="search">
+
+    </div>
     <div id="output">
 
     </div>
@@ -14,14 +18,14 @@
     <button><a href="products.html">Products</a></button> -->
     <script>
         let login = document.getElementById("output").innerHTML = `
-        <form>
+        <form id="form">
             <label>Email</label>
             <input type="text" name="email" placeholder="email" id="email"/>
             <label>Password</label>
             <input type="text" name="password" placeholder="password" id="password"/>
             <button type="button" id="btn">Login</button>
             <a href="register.html"><p>Register</p></a>
-            <p>Forgot password</p>
+            <a href="forgotPass.html"><p>Forgot password</p></a>
         </form>
         `
         //login functionality
@@ -40,14 +44,23 @@ async function  myFunction() {
     method: "POST",
     body: JSON.stringify({email: email,
          password: password})
+         
 })
-
-
-const data = await res.json();
-
-console.log(data);
-
+// const data = await res.json();
+// console.log(data)
+// alert("logged in successfully")
+// //once logged in hide form
+// document.getElementById("form").style.display = "none";
+if(password.value === false){
+    console.log("incorrect password value")
+}else if(email.value === false){
+    console.log("incorrect email value")
+} else (console.log("correct"))
 }
+
+let searchBar = document.getElementById("search").innerHTML = `
+<input type="text" name="searchBar" id="searchBar" placeholder="Search:" />
+`
 
 
     </script>
@@ -66,6 +79,11 @@ console.log(data);
             width: 400px;
             padding: 20px;
             gap: 10px;
+        }
+        #searchBar{
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
         }
     </style>
 </body>

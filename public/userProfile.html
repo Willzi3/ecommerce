@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="output">
+
+    </div>
+    <script>
+        let profile = document.getElementById("output").innerHTML = `
+        <div id="container">
+            <div class="prof_img">
+                <img src="https://via.placeholder.com/150" />
+            </div>
+        </div>
+        `
+
+       async function getUser(){
+            const res = await fetch("http://localhost:6969/users/:id",
+
+           
+            
+            {
+                headers: {
+        'Content-Type': 'application/json'
+        },
+        method: "GET",
+        body: JSON.stringify({user_id: user_id})
+            })
+            
+            console.log("hello")
+
+        }
+       
+
+
+
+
+    </script>
+    <style>
+        #output{
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #container{
+            border: 1px solid black;
+            width: 500px;
+            height: 500px;
+        }
+        .prof_img{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        img{
+            border-radius: 50%;
+            padding: 5px;
+            
+        }
+    </style>
+</body>
+</html>
