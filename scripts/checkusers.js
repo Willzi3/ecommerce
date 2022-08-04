@@ -12,12 +12,7 @@ async function checkUser(url) {
                 "x-auth-token": window.localStorage.getItem("usertoken")
             }
     })
-    
-}
-
-
-
-var data = await response.json();
+    var data = await response.json();
    
     if (data.msg) {
         alert(data.msg);
@@ -25,3 +20,8 @@ var data = await response.json();
         window.localStorage.setItem("user", JSON.stringify(data));
     }
 checkUser(api_url);
+    
+}
+
+
+

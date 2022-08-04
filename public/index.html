@@ -11,7 +11,7 @@
         
     </div>
 
-    <div id="search">
+    <div id="filter">
 
     </div>
     <div id="output">
@@ -62,48 +62,15 @@ async function  myFunction() {
                 alert("successfully loggin")
             document.getElementById("form").style.display = "none";
 
+
     }
+    
+
 });
 }
-let search = document.getElementById("search").innerHTML = `
-<div class="container">
-    <form>
-    <input type="text" name="search" id="search" placeholder="Search:" />
-    <button>Search</button>
-</form></div>
-`
-let categories = document.getElementById("output").innerHTML = `
-<div id="container">
-    <div class="box">
-        <h1>Women</h1>
-    </div>
-    <div class="box">
-        <h1>Men</h1>
-    </div>
-    <div class="box">
-        <h1>Kids</h1>
-    </div>
-</div>
-
-`
-
-
 
     </script>
     <style>
-        #nav{
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-           
-        }
-
-        #nav a{
-            text-decoration: none;
-        }
-        ul{
-            list-style: none;
-        }
         #output{
             display: flex;
             justify-content: center;
@@ -112,6 +79,7 @@ let categories = document.getElementById("output").innerHTML = `
             width: 90vw;
             
         }
+        
         .container{
             display: flex;
             justify-content: flex-end;
@@ -120,7 +88,9 @@ let categories = document.getElementById("output").innerHTML = `
         form{
             border: 1px solid black;
             display: flex;
-            justify-content: flex-end;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
             width: 400px;
             padding: 20px;
             gap: 10px;
@@ -131,27 +101,17 @@ let categories = document.getElementById("output").innerHTML = `
        button{
         width: 100px;
        }
-        #container{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-        }
-        .box{
-            width: 200px;
-            height: 200px;
-            border-radius: 10px;
-            box-shadow: 5px 5px 5px 5px lightgrey;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .box:hover{
-            background: black;
-            color: white;
-            box-shadow: 5px 5px 5px 5px darkgray;
-            cursor: pointer;
-        }
+      #container{
+        height: 70vh;
+        width: 70vw;
+        border: 1px solid black;
+        z-index: 100;
+        background: white;
+      }
+      #filterBy{
+        margin-bottom: -120px;
+        margin-left: 450px;
+      }
     </style>
 </body>
 </html>
