@@ -8,60 +8,81 @@
 </head>
 <body>
     <h1>PRODUCTS</h1>
+    <div id="search">
+
+    </div>
+
     <div id="output">
 
     </div>
     <script>
-        let table = document.getElementById("output").innerHTML = `
-        <table>
-        <thead>
-            <tr>
-            <th>PRODUCT_ID</th>
-            <th>SKU</th>
-            <th>NAME</th>
-            <th>PRICE</th>
-            <th>WEIGHT</th>
-            <th>DESCRIPTIONS</th>
-            <th>THUMBNAIL</th>
-            <th>IMAGE</th>
-            <th>CATEGORY</th>
-            <th>CREATE_DATE</th>
-            <th>STOCK</th>
-            </tr>
-        </thead>
-        <tbody id="output1">
-        </tbody>
-        </table>
+        //searchBar
+        let searchBar = document.getElementById("search").innerHTML = `
+       <form onsumbit="Search()">
+        <input type="text" name="searchBar" id="searchBar" placeholder="Search:" />
+        <button type="button">Search</button>
+        </form>
         `
-        const url = "http://localhost:6969"
-        function products(url){
-        fetch(url + "/" + "products")
+    
+       
+        
+        function Search(){
+
+            
+            
+            const url = "http://localhost:6969/products"
+
+            function products(url){
+            fetch(url + "/" + "products")
             .then(res => res.json())
             .then((data) => {
-                    for(i = 0; i < data.length; i++){
-                        console.log(data)
-            document.getElementById("output1").innerHTML += `
+
+            let searchValue = document.getElementById("searchBar").value
+
+            for(i = 0; i < data.length; i++){
+                if(searchValue === data[i].name){
+
+                console.log(data[i].name)
+            }
+            }
+           
+            }
+
+            )};
+            
+            products(url)
+        }
+                    
+        
+    //     const url = "http://localhost:6969"
+    //     function products(url){
+    //     fetch(url + "/" + "products")
+    //         .then(res => res.json())
+    //         .then((data) => {
+    //                 for(i = 0; i < data.length; i++){
+    //                     console.log(data)
+    //         document.getElementById("output1").innerHTML += `
                
-                    <tr>
-                        <td class="table_row">${data[i].product_id}</td>
-                        <td class="table_row">${data[i].sku}</td>
-                        <td class="table_row">${data[i].name}</td>
-                        <td class="table_row">${data[i].price}</td>
-                        <td class="table_row">${data[i].weight}</td>
-                        <td class="table_row">${data[i].descriptions}</td>
-                        <td class="table_row">${data[i].thumbnail}</td>
-                        <td class="table_row">${data[i].image}</td>
-                        <td class="table_row">${data[i].category}</td>
-                        <td class="table_row">${data[i].create_date}</td>
-                        <td class="table_row">${data[i].stock}</td>
-                    </tr>
+    //                 <tr>
+    //                     <td class="table_row">${data[i].product_id}</td>
+    //                     <td class="table_row">${data[i].sku}</td>
+    //                     <td class="table_row">${data[i].name}</td>
+    //                     <td class="table_row">${data[i].price}</td>
+    //                     <td class="table_row">${data[i].weight}</td>
+    //                     <td class="table_row">${data[i].descriptions}</td>
+    //                     <td class="table_row">${data[i].thumbnail}</td>
+    //                     <td class="table_row">${data[i].image}</td>
+    //                     <td class="table_row">${data[i].category}</td>
+    //                     <td class="table_row">${data[i].create_date}</td>
+    //                     <td class="table_row">${data[i].stock}</td>
+    //                 </tr>
 
                 
-            </table>`
-        }
-        });
-    }
-       products(url);
+    //         </table>`
+    //     }
+    //     });
+    // }
+    //    products(url);
     </script>
     <style>
         h1{
