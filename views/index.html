@@ -4,29 +4,54 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
 </head>
 <body>
     <div id="output">
-        
+
     </div>
-    <script>
-        let form = document.getElementById("output").innerHTML = `
-        <form>
-            <input type="text" name="name" placeholder="userName" />
-            <input type="text" name="name" placeholder="userName" />
-            <input type="text" name="name" placeholder="userName" />
-            <input type="text" name="name" placeholder="userName" />
-            </form>
-        `
-    </script>
-    <style>
-        form{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-    </style>
+  <script>
+    let form = document.getElementById("output").innerHTML = `
+    <form class="login">
+        <input class="login-item" type="text" name="email" id="email" placeholder="Email:" />
+
+        <input class="login-item" type="text" name="password" id="password" placeholder="Password:" required />
+
+        <button class="login-item">Login</button>
+
+       <div class="login-extra">
+        <a href="#"><p>Register</p></a>
+       <a href="#"><p>Forgot Password</p></a></div>
+    </form>
+    `
+  </script>
+   <style>
+    #output{
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    
+    }
+    .login{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border: 1px solid black;
+        width: 400px;
+        height: 400px;
+    }
+    .login-extra{
+        display: flex;
+        gap: 10px;
+    }
+    .login-item{
+        width: 200px;
+    }
+  
+   </style>
 </body>
 </html>
