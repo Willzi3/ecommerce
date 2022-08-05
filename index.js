@@ -17,7 +17,9 @@ const categoriesRoute = require("./routes/categoriesRoute")
 //import from orders
 const ordersRoute = require("./routes/ordersRoute")
 
-
+app.get('/', (req, res) => {
+  res.sendFile('./views/index.html', {root: __dirname})
+})
 
 
 app.use("/users", userRoute);
