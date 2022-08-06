@@ -20,6 +20,17 @@ const ordersRoute = require("./routes/ordersRoute")
 app.get('/', (req, res) => {
   res.sendFile('./views/index.html', {root: __dirname})
 })
+app.get('/Register', (req, res) => {
+  res.sendFile('./views/register.html', {root: __dirname})
+})
+
+app.get('/register/password', (req, res) => {
+  res.sendFile('./views/password.html', {root: __dirname})
+})
+app.get('/products', (req, res) => {
+  res.sendFile('./views/products.html', {root: __dirname})
+})
+
 
 
 app.use("/users", userRoute);
@@ -29,9 +40,6 @@ app.use("/orders", ordersRoute);
 
 app.use(express.static("public"));
 
-app.get("/" , function(req , res){
-  res.sendFile(__dirname + "/users" + "index.html");
-})
 
 
 

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav role="navigation" class="nav">
+        <div id="menuToggle">
+          <input type="checkbox" />
+          <span></span>
+          <span></span>
+          <span></span>
+          <ul id="menu">
+            <a
+              href="home"
+              class="nav-link router-link-exact-active router-link-active"
+              target="_self"
+              aria-current="page"
+              ><li>Home</li></a
+            >
+            <a href="about"><li>About</li></a> 
+            <a href="resume"><li>Resume</li></a>
+            <a href="projects"><li>Projects</li></a>
+            <a class="nav-link" href="testimonials"><li>Testimonials</li></a>
+            <a href="contact"><li>Contact</li></a>
+          </ul>
+        </div>
+      </nav>
+    <div id="output">
+
+    </div>
+   
+    <script>
+        let products = document.getElementById("output").innerHTML = `
+        <div class="container">
+            <h1>PRODUCTS</h1>
+            <div id="Output"></div>
+            
+        </div>
+        `
+        let table = document.getElementById("Output").innerHTML = `
+        <table>
+        <thead>
+            <tr>
+            <th>PRODUCT_ID</th>
+            <th>SKU</th>
+            <th>NAME</th>
+            <th>PRICE</th>
+            <th>WEIGHT</th>
+            <th>DESCRIPTIONS</th>
+            <th>THUMBNAIL</th>
+            <th>IMAGE</th>
+            <th>CATEGORY</th>
+            <th>CREATE_DATE</th>
+            <th>STOCK</th>
+            </tr>
+        </thead>
+        <tbody id="output1">
+        </tbody>
+        </table>
+        `
+        const url = "http://localhost:6969"
+        function getproducts(url){ 
+        fetch(url + "/" + "products")
+            .then(res => res.json())
+            .then((data) => {
+                    for(i = 0; i < data.length; i++){
+                        console.log(data)
+            document.getElementById("output1").innerHTML += `
+               
+                    <tr>
+                        <td class="table_row">${data[i].product_id}</td>
+                        <td class="table_row">${data[i].sku}</td>
+                        <td class="table_row">${data[i].name}</td>
+                        <td class="table_row">${data[i].price}</td>
+                        <td class="table_row">${data[i].weight}</td>
+                        <td class="table_row">${data[i].descriptions}</td>
+                        <td class="table_row">${data[i].thumbnail}</td>
+                        <td class="table_row">${data[i].image}</td>
+                        <td class="table_row">${data[i].category}</td>
+                        <td class="table_row">${data[i].create_date}</td>
+                        <td class="table_row">${data[i].stock}</td>
+                    </tr>
+                
+            </table>`
+        }
+        });
+    }
+       getproducts(url);
+    </script>
+  
+
+
+      <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        h1{
+            color: white;
+            text-align: center;
+        }
+        #output{
+            background: black;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            box-shadow: 5px 5px 5px 5px white;
+            border-radius: 10px;
+            height: 80vh;
+            width: 70vw;
+        }
+        /* Navbar */
+.nav {
+  z-index: 1000;
+}
+.text {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  float: left;
+  margin-top: 20%;
+}
+#menuToggle {
+  color: white;
+  display: block;
+  position: fixed;
+  top: 50px;
+  left: 50px;
+  z-index: 1;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.bck {
+  text-decoration: none;
+  position: sticky;
+  top: 0;
+  float: right;
+  margin-right: 50px;
+  color: white;
+}
+#menuToggle a {
+  text-decoration: none;
+  color: #FFFFFF;
+  transition: color 0.3s ease;
+}
+#menuToggle a:hover {
+  color: rgb(2, 117, 162);
+}
+#menuToggle input {
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+  cursor: pointer;
+  opacity: 0; /* hide this */
+  z-index: 2; /* and place it over the hamburger */
+  -webkit-touch-callout: none;
+}
+/*
+* Just a quick hamburger
+*/
+#menuToggle span {
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  background: #FEFCFC;
+  border-radius: 3px;
+  z-index: 1;
+  transform-origin: 4px 0px;
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), 
+}
+#menuToggle span:first-child {
+  transform-origin: 0% 0%;
+}
+#menuToggle span:nth-last-child(2) {
+  transform-origin: 0% 100%;
+}
+/*
+* Transform all the slices of hamburger
+* into a crossmark.
+*/
+#menuToggle input:checked ~ span {
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #232323;
+}
+/*
+* But let's hide the middle one.
+*/
+#menuToggle input:checked ~ span:nth-last-child(3) {
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+/*
+* Ohyeah and the last one should go the other direction
+*/
+#menuToggle input:checked ~ span:nth-last-child(2) {
+  transform: rotate(-45deg) translate(0, -1px);
+}
+/*
+* Make this absolute positioned
+* at the top left of the screen
+*/
+#menu {
+  position: absolute;
+  width: 300px;
+  height: 100vh;
+  margin: -100px 0 0 -50px;
+  padding: 50px;
+  padding-top: 125px;
+  background: #000000;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  /* to stop flickering of text in safari */
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+}
+#menu li {
+  padding: 10px 0;
+  font-size: 22px;
+}
+#menuToggle input:checked ~ ul {
+  transform: none;
+}
+/* End of Navbar */
+      </style>
+</body>
+</html>

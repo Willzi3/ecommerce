@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <div id="output">
+
+    </div>
+    <script>
+        let setUser = document.getElementById("output").innerHTML = `
+        <form class="register" onsubmit="register()">
+            <div class="intro">
+            <h1>Register</h1>
+            <p>Please complete the form below</p>
+            </div>
+            <input class="reg-item" type="text" name="full_name" id="full_name" placeholder="Full Name:"/>
+            <input class="reg-item" type="text" name="email" id="email" placeholder="Email:"/>
+            <input class="reg-item" type="text" name="password" id="password" placeholder="Password"/>
+            <input class="reg-item" type="text" name="user_type" id="user_type" value="User" readonly/>
+            <input class="reg-item" type="text" name="phone" id="phone" placeholder="Phone:"/>
+            <input class="reg-item" type="text" name="country" id="country" placeholder="Country"/>
+            <input class="reg-item" type="text" name="billing_address" id="billing_address" placeholder="Billing Address:"/>
+            <input class="reg-item" type="text" name="default_shipping_address" id="default_shipping_address" placeholder="Default shipping Address:"/>
+            <button class="reg-item" id="btn">Register</button>
+        </form>
+       
+        `
+        btn.addEventListener('click', register);
+        function register(){
+            let full_name = document.getElementById("full_name").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            let user_type = document.getElementById("user_type").value;
+            let phone = document.getElementById("phone").value;
+            let country = document.getElementById("country").value;
+            let billing_address = document.getElementById("billing_address").value;
+            let default_shipping_address = document.getElementById("default_shipping_address").value;
+
+             fetch('http://localhost:6969/users/register',
+            {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: "POST",
+    body: JSON.stringify({full_name: full_name, email: email,
+         password: password,
+        user_type: user_type, phone: phone, country: country, billing_address: billing_address, default_shipping_address: default_shipping_address})
+})
+
+
+.then(response => console.log(response));
+
+
+        }
+    </script>
+    <style>
+         .intro{
+        color: white;
+    }
+    .intro:hover{
+        cursor: default;
+        color: lightgrey;
+    }
+        #output{
+            height: 98vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: black;
+        }
+        .register{
+            box-shadow: 5px 5px 5px 5px white;
+            width: 400px;
+            height: 500px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .reg-item{
+            width: 200px;
+            border-radius: 5px;
+        }
+        button.reg-item{
+            width: 210px;
+        }
+    </style>
+</body>
+</html>
